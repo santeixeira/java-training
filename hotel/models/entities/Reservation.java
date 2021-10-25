@@ -1,4 +1,4 @@
-package models.entities;
+package hotel.models.entities;
 
 
 import java.util.Date;

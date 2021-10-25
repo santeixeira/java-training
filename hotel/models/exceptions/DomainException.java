@@ -1,4 +1,4 @@
-package models.exceptions;
+package hotel.models.exceptions;
 
 public class DomainException extends Exception {
 

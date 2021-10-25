@@ -1,4 +1,4 @@
-package application;
+package hotel.application;
 
 import java.util.Date;
 import java.text.ParseException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import models.entities.Reservation;
+import hotel.models.entities.Reservation;
 
 public class Program {
     public static void main(String[] args) throws ParseException{
@@ -64,7 +64,6 @@ public class Program {
 
         }
     
-
         sc.close();
     }
 }
