@@ -1,11 +1,16 @@
 package controller;
 import java.util.Date;
+
+import models.Funcionario;
+
 import java.text.SimpleDateFormat;
 
-public class Relogio {
+public class Relogio extends Funcionario {
     public Date tempo;
 
-    public Relogio(Date tempo) {
+
+    public Relogio(String nome, String setor, Double salario, Date dataAdmissao2, Date tempo) {
+        super(nome, setor, salario, dataAdmissao2);
         this.tempo = tempo;
     }
 

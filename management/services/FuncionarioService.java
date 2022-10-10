@@ -16,7 +16,6 @@ public class FuncionarioService extends Funcionario {
     static BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
     static SimpleDateFormat datef = new SimpleDateFormat("dd/MM/yyyy");
     static List<Funcionario> listaFuncionario = new ArrayList<>();
-    static Funcionario func = new Funcionario();
 
     public FuncionarioService(String nome, String setor, Double salario, Date dataAdmissao) {
         super(nome, setor, salario, dataAdmissao);
@@ -37,20 +36,14 @@ public class FuncionarioService extends Funcionario {
             System.out.print("Informe o salário do funcionario: ");
             Double salario = Double.parseDouble(rd.readLine());
 
-            listaFuncionario.add(new Funcionario(nome, setor, salario, dataAdmissao));
-            visualizaTodosFuncionario(nome, setor, dataAdmissao, salario);
+            Funcionario funcionario = new Funcionario(nome, setor, salario, dataAdmissao);
+
+            listaFuncionario.add(funcionario);
+            funcionario.getFuncionario();
 
         } catch (ParseException e) {
             System.out.println("Data informada é inválida.");
         }
-    }
-
-    public static void visualizaTodosFuncionario(String nome, String setor, Date dataAdmissao, Double salario) {
-        System.out.println("--------------------------------------------------------------------");
-        System.out.println("ID\t\tNome\t\tSetor\t\tDtAdmissao\t\tSalario");
-        System.out.printf(func.getId() + "\t\t" + nome + "\t\t" + setor + "\t\t" + datef.format(dataAdmissao)
-                + "\t\t" + salario);
-        System.out.println("\n--------------------------------------------------------------------");
     }
 
 }
