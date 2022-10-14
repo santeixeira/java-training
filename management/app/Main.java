@@ -9,10 +9,11 @@ import controller.FuncionarioController;
 
 public class Main {
     static BufferedReader rd = new BufferedReader(new InputStreamReader(System.in));
+
     public static void main(String[] args) throws ParseException, NumberFormatException, IOException {
 
         System.out.print("Bem vindo ao controle da empresa POO de funcionarios");
-
+        
         System.out.print("Digite o numero do que deseja fazer: ");
 
         System.out.println("\n1 - Adicionar um novo funcionário");
@@ -29,7 +30,9 @@ public class Main {
                 System.out.println("Selecione uma das opções: ");
                 System.out.println("\n1 - Visualizar um funcionário");
                 System.out.println("\n2 - Visualizar todos os funcionários");
-                choice = Integer.parseInt(rd.readLine());;
+                choice = Integer.parseInt(rd.readLine());
+                FuncionarioController.get(choice);
+
                 break;
             case 0:
                 System.out.println("Obrigado por utilizar nosso sistema.");

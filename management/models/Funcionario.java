@@ -1,23 +1,31 @@
 package models;
+
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Funcionario {
-    private static int cont = 0;
-    private int id;
+    private static int id;
     private String nome;
     private Double salario;
     private String setor;
     private Date dataAdmissao;
 
-    public Funcionario() {}
-
     public Funcionario(String nome, String setor, Double salario, Date dataAdmissao2) {
         super();
-        this.id = cont++;
+        Funcionario.id = id++;
         this.nome = nome;
         this.salario = salario;
         this.setor = setor;
         this.dataAdmissao = dataAdmissao2;
+    }
+
+    public void getFuncionario() {
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println("ID\t\tNome\t\tSetor\t\tDtAdmissao\t\tSalario");
+        System.out.printf(Funcionario.id + "\t\t" + this.nome + "\t\t" + this.setor + "\t\t"
+                + new SimpleDateFormat().format(this.dataAdmissao)
+                + "\t\t" + this.salario);
+        System.out.println("\n--------------------------------------------------------------------");
     }
 
     public void setSalario(Double salario) {
@@ -47,7 +55,7 @@ public class Funcionario {
     }
 
     public void setId() {
-        this.id = cont++;
+        Funcionario.id = id++;
 
     }
 
@@ -60,7 +68,7 @@ public class Funcionario {
     }
 
     public int getId() {
-        return cont++;
+        return id++;
     }
 
     public String getNome() {
@@ -76,7 +84,7 @@ public class Funcionario {
     // mensagem informando que o funcionário irá
     // tirar férias de 30 dias
     public void tirarFerias() {
-        System.out.println("O Funcionario " + this.nome + "de ID: " + this.id + "tirará férias de 30 dias");
+        System.out.println("O Funcionario " + this.nome + "de ID: " + Funcionario.id + "tirará férias de 30 dias");
     }
 
     /*
@@ -86,6 +94,7 @@ public class Funcionario {
      * informada de férias
      */
     public void tirarFerias(int dias) {
-        System.out.println("O Funcionario " + this.nome + "de ID: " + this.id + " tirará férias de " + dias + " dias");
+        System.out.println(
+                "O Funcionario " + this.nome + "de ID: " + Funcionario.id + " tirará férias de " + dias + " dias");
     }
 }
