@@ -2,6 +2,8 @@
   "java.project.referencedLibraries": [
     "lib/**/*.jar",
     "c:\\Users\\SAN\\Desktop\\mysql-connector-java-8.0.30.jar",
-    "c:\\Users\\SAN\\Desktop\\protobuf-java-3.19.4.jar"
+    "c:\\Users\\SAN\\Desktop\\protobuf-java-3.19.4.jar",
+    "c:\\Users\\SAN\\Desktop\\mchange-commons-java-0.2.16.jar",
+    "c:\\Users\\SAN\\Desktop\\c3p0-0.9.5.4.jar"
   ]
 }
