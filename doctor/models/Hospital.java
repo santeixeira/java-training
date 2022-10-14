@@ -1,15 +1,25 @@
 package models;
 
 public class Hospital {
+    private Long id;
     protected String nome;
     protected String endereco;
 
     public Hospital() {
     }
 
-    public Hospital(String nome, String endereco) {
+    public Hospital(Long id, String nome, String endereco) {
+        this.id = id;
         this.nome = nome;
         this.endereco = endereco;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = ++id;
     }
 
     public String getNome() {

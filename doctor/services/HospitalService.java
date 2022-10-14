@@ -1,37 +1,67 @@
 package services;
 
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.List;
 
+import config.DbConnection;
 import models.Hospital;
 
-public class HospitalService {
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class HospitalService extends Hospital {
 
     Scanner sc = new Scanner(System.in);
-    List<Hospital> hospital = new ArrayList<>();
+    DbConnection db = new DbConnection();
+    Connection connection = db.Connect();
 
-    protected void getHospital() {
-        for (Hospital h : hospital) {
-            System.out.println("{ nome: " + h.getNome() + ",\n endereco: " + h.getEndereco() + "}");
+    protected void getHospital() throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM HOSPITAL");
+        ResultSet rst = ps.getResultSet();
+        while (rst.next()) {
+            String query = rst.getString(1);
+            System.out.println("bla bla: " + query);
         }
     }
 
-    protected void postHospital() {
-        System.out.println("\nDigite um nome para o hospital: ");
-        String nomeHospital = sc.next();
-        System.out.println("\nDigite o endereço para o hospital: ");
-        String enderecoHospital = sc.next();
-        Hospital h = new Hospital(nomeHospital, enderecoHospital);
-        hospital.add(h);
-        System.out.println("Hospital Adicionado!");
+    public void postHospital() {
+        try {
+            System.out.println("Digite o nome do hospital: ");
+            String nome = sc.nextLine();
+            System.out.println("Digite o endereco do hospital: ");
+            String endereco = sc.nextLine();
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO HOSPITAL (NOME, ENDERECO) VALUES (?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, nome);
+            ps.setString(2, endereco);
+
+            ps.execute();
+
+            System.out.println(ps);
+            ResultSet rs = ps.getGeneratedKeys();
+            while (rs.next()) {
+                Integer id = rs.getInt(1);
+                System.out.println("O hospital com ID " + id + " foi criado com sucesso!");
+            }
+            rs.close();
+            ps.close();
+            connection.close();
+        } catch (SQLException e) {
+            System.out.println("ERROR: Nao foi possivel criar um estado.");
+            e.printStackTrace();
+        }
+
     }
 
-    protected void getHospitalById(Long id) {
-        for (Hospital h : hospital) {
-            System.out.println("{ nome: " + h.getNome() + ",\n endereco: " + h.getEndereco() + "}");
-        }
-    }
+    // protected void getHospitalById(Long id) {
+    // for (Hospital h : hospital) {
+    // System.out.println("{ nome: " + h.getNome() + ",\n endereco: " +
+    // h.getEndereco() + "}");
+    // }
+    // }
 
     protected void updateHospital() {
 
