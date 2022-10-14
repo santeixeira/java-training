@@ -1,5 +1,7 @@
 package services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import config.DbConnection;
@@ -16,31 +18,45 @@ public class HospitalService extends Hospital {
     Scanner sc = new Scanner(System.in);
     DbConnection db = new DbConnection();
     Connection connection = db.Connect();
+    List<Hospital> hospitais = new ArrayList<Hospital>();
 
-    protected void getHospital() throws SQLException {
-        PreparedStatement ps = connection.prepareStatement("SELECT * FROM HOSPITAL");
-        ResultSet rst = ps.getResultSet();
-        while (rst.next()) {
-            String query = rst.getString(1);
-            System.out.println("bla bla: " + query);
+    public HospitalService() {
+    }
+
+    public HospitalService(Long hospitalId, String nome, String endereco) {
+        super(hospitalId, nome, endereco);
+    }
+
+    public List<Hospital> getHospital() {
+        String query = "SELECT * FROM HOSPITAL";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.execute();
+            ResultSet rst = ps.getResultSet();
+            while (rst.next()) {
+                Hospital hospital = new Hospital(rst.getLong(1), rst.getString(2), rst.getString(3));
+                hospitais.add(hospital);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+        return hospitais;
+
     }
 
     public void postHospital() {
-        try {
+        String query = "INSERT INTO HOSPITAL (NOME, ENDERECO) VALUES (?, ?)";
+        try (PreparedStatement ps = connection.prepareStatement(query,
+                Statement.RETURN_GENERATED_KEYS);) {
             System.out.println("Digite o nome do hospital: ");
-            String nome = sc.nextLine();
+            this.nome = sc.nextLine();
             System.out.println("Digite o endereco do hospital: ");
-            String endereco = sc.nextLine();
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO HOSPITAL (NOME, ENDERECO) VALUES (?, ?)",
-                    Statement.RETURN_GENERATED_KEYS);
+            this.endereco = sc.nextLine();
 
-            ps.setString(1, nome);
-            ps.setString(2, endereco);
+            ps.setString(1, this.getNome());
+            ps.setString(2, this.getEndereco());
 
             ps.execute();
 
-            System.out.println(ps);
             ResultSet rs = ps.getGeneratedKeys();
             while (rs.next()) {
                 Integer id = rs.getInt(1);
@@ -56,18 +72,36 @@ public class HospitalService extends Hospital {
 
     }
 
-    // protected void getHospitalById(Long id) {
-    // for (Hospital h : hospital) {
-    // System.out.println("{ nome: " + h.getNome() + ",\n endereco: " +
-    // h.getEndereco() + "}");
-    // }
-    // }
-
-    protected void updateHospital() {
-
+    public void getHospitalById(Long hospitalId) {
+        String query = "SELECT * FROM HOSPITAL WHERE HOSPITAL_ID = ?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setLong(1, hospitalId);
+            ps.execute();
+            ResultSet rst = ps.getResultSet();
+            while (rst.next()) {
+                Hospital hospital = new Hospital(rst.getLong(1), rst.getString(2), rst.getString(3));
+                System.out.println(hospital);
+            }
+            rst.close();
+            ps.close();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    protected void deleteHospital() {
+    public void updateHospital(Long hospitalId) {
+        String query = "UPDATE hospital SET nome = ? WHERE hospital_id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            ps.setString(1, this.getNome());
+            ps.setLong(2, hospitalId);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteHospital() {
 
     }
 }

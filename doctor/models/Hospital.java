@@ -1,25 +1,26 @@
 package models;
 
 public class Hospital {
-    private Long id;
+    private Long hospitalId;
     protected String nome;
     protected String endereco;
 
     public Hospital() {
     }
 
-    public Hospital(Long id, String nome, String endereco) {
-        this.id = id;
+    public Hospital(Long hospitalId, String nome, String endereco) {
+        super();
+        this.hospitalId = hospitalId;
         this.nome = nome;
         this.endereco = endereco;
     }
 
-    public Long getId() {
-        return id;
+    public Long gethospitalId() {
+        return hospitalId;
     }
 
-    public void setId(Long id) {
-        this.id = ++id;
+    public void sethospitalId(Long hospitalId) {
+        this.hospitalId = ++hospitalId;
     }
 
     public String getNome() {
@@ -36,6 +37,11 @@ public class Hospital {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\nHospital: %d \t Nome: %s \t Endereço: %s", this.hospitalId, this.nome, this.endereco);
     }
 
 }

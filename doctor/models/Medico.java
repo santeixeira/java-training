@@ -5,11 +5,6 @@ import java.util.Date;
 import models.enums.Especializacao;
 import models.enums.Sexo;
 
-//  crm
-//  salário
-//  especialização
-//  Um médico pode dar plantão
-
 public class Medico extends Pessoa {
     private String crm;
     private Double salario;
