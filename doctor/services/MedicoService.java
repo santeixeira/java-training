@@ -5,9 +5,8 @@ import java.util.List;
 
 import models.Medico;
 
-public class MedicoService {
-    private Medico medico;
-
+public class MedicoService extends Medico {
+    
     List<Medico> medicoList = new ArrayList<>();
 
     public static Medico getMedico() {

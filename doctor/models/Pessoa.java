@@ -5,6 +5,7 @@ import java.util.Date;
 import models.enums.Sexo;
 
 public class Pessoa {
+    private Long pessoaId;
     private String nome;
     private String endereco;
     private Date dataNascimento;
@@ -14,13 +15,22 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String endereco, Date dataNascimento, String cpf, Sexo sexo) {
+    public Pessoa(Long pessoaId, String nome, String endereco, Date dataNascimento, String cpf, Sexo sexo) {
         super();
+        this.pessoaId = pessoaId;
         this.nome = nome;
         this.endereco = endereco;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.sexo = sexo;
+    }
+
+    public Long getPessoaId() {
+        return pessoaId;
+    }
+
+    public void setPessoaId(Long pessoaId) {
+        this.pessoaId = pessoaId;
     }
 
     public String getNome() {
@@ -43,8 +53,12 @@ public class Pessoa {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setData(Date dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public Date getIdade() {
+        return null;
     }
 
     public String getCpf() {
@@ -65,5 +79,16 @@ public class Pessoa {
 
     public void pessoaAnda() {
         System.out.println(this.nome + " está andando.");
+    }
+
+    @Override
+    public String toString() {
+        return String.format("\nID: %d \t Nome: %s \t Endereço: %s \t dataNascimento \t CPF: %s \t Sexo:",
+                this.pessoaId,
+                this.nome,
+                this.endereco,
+                this.dataNascimento,
+                this.cpf,
+                this.sexo);
     }
 }

@@ -12,6 +12,7 @@ public class HospitalController extends HospitalService {
 
     HospitalService hs = new HospitalService();
     AppDoctor doc = new AppDoctor();
+    List<Hospital> hospitais;
 
     public void gerenciarHospitais() throws InterruptedException, SQLException {
 
@@ -36,8 +37,7 @@ public class HospitalController extends HospitalService {
         switch (choice) {
             case 1:
                 System.out.println("Mostrando e listando todos os hospitais do sistema, aguarde!");
-                Thread.sleep(200);
-                List<Hospital> hospitais = hs.getHospital();
+                hospitais = hs.getHospital();
                 hospitais.stream().forEach(h -> System.out.println(h));
                 AppDoctor.backtrack();
                 break;
@@ -55,12 +55,20 @@ public class HospitalController extends HospitalService {
                 AppDoctor.backtrack();
                 break;
             case 4:
+                System.out.println("\nDigite o id do hospital: ");
+                Long hospitalIdUpdate = sc.nextLong();
+                hs.updateHospital(hospitalIdUpdate);
                 AppDoctor.backtrack();
                 break;
             case 5:
+                System.out.println("\nDigite o id do hospital: ");
+                Long hospitalIdDelete = sc.nextLong();
+                hs.deleteHospital(hospitalIdDelete);
                 AppDoctor.backtrack();
                 break;
             default:
+                System.out.println("Voltando para o menu inicial!");
+                Thread.sleep(300);
                 AppDoctor.runApplication();
                 break;
         }
