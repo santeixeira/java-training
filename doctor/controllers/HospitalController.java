@@ -7,6 +7,7 @@ import java.util.Scanner;
 import app.AppDoctor;
 import models.Hospital;
 import services.HospitalService;
+import utils.functionSQL;
 
 public class HospitalController extends HospitalService {
 
@@ -18,18 +19,9 @@ public class HospitalController extends HospitalService {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("1 - Mostrar todos os hospitais.");
-        Thread.sleep(20);
-        System.out.println("2 - Mostrar hospital por ID");
-        Thread.sleep(20);
-        System.out.println("3 - Adicionar um hospital");
-        Thread.sleep(20);
-        System.out.println("4 - Alterar um hopistal");
-        Thread.sleep(20);
-        System.out.println("5 - Deletar um hospital");
-        Thread.sleep(20);
-        System.out.println("0 - Voltar para menu");
-        Thread.sleep(20);
+        functionSQL fSql = new functionSQL();
+
+        fSql.crudTexts("hospital");
 
         System.out.print("\nEscolha: ");
         byte choice = sc.nextByte();
@@ -38,7 +30,6 @@ public class HospitalController extends HospitalService {
             case 1:
                 System.out.println("Mostrando e listando todos os hospitais do sistema, aguarde!");
                 hospitais = hs.getHospital();
-                hospitais.stream().forEach(h -> System.out.println(h));
                 AppDoctor.backtrack();
                 break;
             case 2:

@@ -22,4 +22,24 @@ public class functionSQL {
     }
   }
 
+  public void crudTexts(String table) {
+    try {
+      System.out.println("1 - Mostrar todos os " + table + "s");
+      Thread.sleep(20);
+      System.out.println("2 - Mostrar " + table + " por ID");
+      Thread.sleep(20);
+      System.out.println("3 - Adicionar um " + table);
+      Thread.sleep(20);
+      System.out.println("4 - Alterar um " + table);
+      Thread.sleep(20);
+      System.out.println("5 - Deletar um " + table);
+      Thread.sleep(20);
+      System.out.println("0 - Voltar para menu");
+      Thread.sleep(20);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
+  }
+
 }

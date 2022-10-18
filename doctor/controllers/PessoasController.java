@@ -1,18 +1,18 @@
 package controllers;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import app.AppDoctor;
 import controllers.Pessoas.CadastroController;
-import models.Pessoa;
-import services.PessoaService;
+import controllers.Pessoas.MedicoController;
+import controllers.Pessoas.PacienteController;
 
 public class PessoasController {
   AppDoctor doc = new AppDoctor();
   CadastroController cc = new CadastroController();
+  MedicoController m = new MedicoController();
+  PacienteController p = new PacienteController();
 
   public void gerenciarPessoas() throws InterruptedException, SQLException {
 
@@ -36,23 +36,14 @@ public class PessoasController {
         AppDoctor.backtrack();
         break;
       case 2:
-
+        p.gerenciarCadastro();
         AppDoctor.backtrack();
         break;
       case 3:
-        // ps.postPessoa();
-        AppDoctor.backtrack();
-        break;
-      case 4:
-
-        AppDoctor.backtrack();
-        break;
-      case 5:
-
+        m.gerenciarCadastro();
         AppDoctor.backtrack();
         break;
       default:
-
         AppDoctor.runApplication();
         break;
     }
