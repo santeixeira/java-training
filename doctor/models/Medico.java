@@ -10,9 +10,9 @@ public class Medico extends Pessoa {
     public Medico() {
     }
 
-    public Medico(String crm, Double salario, String especializacao) {
+    public Medico(String crm, String especializacao, String nome) {
+        super(nome);
         this.crm = crm;
-        this.salario = salario;
         this.especializacao = especializacao;
     }
 
@@ -62,8 +62,8 @@ public class Medico extends Pessoa {
 
     @Override
     public String toString() {
-        return String.format("Medico: %d\tCRM: %s\tEspecializacao: %s", this.medicoId, this.crm,
-                this.especializacao);
+        return String.format("Medico: %s\tCRM: %s\tEspecializacao: %s", this.getNome(), this.getCrm(),
+                this.getEspecializacao());
     }
 
 }

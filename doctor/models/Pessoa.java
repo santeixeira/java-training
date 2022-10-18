@@ -15,8 +15,12 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(Long pessoaId, String nome, String endereco, Date dataNascimento, String cpf, Sexo sexo) {
+    public Pessoa(String nome) {
         super();
+        this.nome = nome;
+    }
+
+    public Pessoa(Long pessoaId, String nome, String endereco, Date dataNascimento, String cpf, Sexo sexo) {
         this.pessoaId = pessoaId;
         this.nome = nome;
         this.endereco = endereco;
@@ -57,10 +61,6 @@ public class Pessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public Date getIdade() {
-        return null;
-    }
-
     public String getCpf() {
         return cpf;
     }
@@ -83,12 +83,12 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return String.format("\nID: %d \t Nome: %s \t Endereço: %s \t dataNascimento \t CPF: %s \t Sexo:",
+        return String.format("\nID: %d \t Nome: %s \t Endereço: %s \t dataNascimento: %s \t CPF: %s \t Sexo: %s",
                 this.pessoaId,
-                this.nome,
-                this.endereco,
-                this.dataNascimento,
-                this.cpf,
-                this.sexo);
+                this.getNome(),
+                this.getEndereco(),
+                this.getDataNascimento(),
+                this.getCpf(),
+                this.getSexo());
     }
 }

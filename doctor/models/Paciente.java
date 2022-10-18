@@ -6,7 +6,8 @@ public class Paciente extends Pessoa {
     protected String medicacao;
     private Long pessoaId;
 
-    public Paciente() {}
+    public Paciente() {
+    }
 
     public Paciente(Long pacienteId, String doenca, String medicacao) {
         this.pacienteId = pacienteId;
@@ -48,7 +49,8 @@ public class Paciente extends Pessoa {
 
     @Override
     public String toString() {
-        return String.format("O paciente %d, foi diagnosticado com %s, necessita de %s", this.pacienteId, this.doenca,
-                this.medicacao);
+        return String.format("O paciente %d, foi diagnosticado com %s, necessita de %s", this.getpacienteId(),
+                this.getDoenca(),
+                this.getMedicacao());
     }
 }

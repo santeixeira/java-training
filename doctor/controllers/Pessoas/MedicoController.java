@@ -30,7 +30,7 @@ public class MedicoController {
       case 2:
         System.out.println("\nDigite o CRM do medico: ");
         String crm = sc.next();
-        System.out.print("Mostrando o usuario de CPF: " + crm + ", aguarde!");
+        System.out.print("Mostrando o medico de CRM: " + crm + ", aguarde!");
         Thread.sleep(100);
         medico.getMedicoByCrm(crm);
         AppDoctor.backtrack();

@@ -41,7 +41,8 @@ public class Hospital {
 
     @Override
     public String toString() {
-        return String.format("\nHospital: %d \t Nome: %s \t Endereço: %s", this.hospitalId, this.nome, this.endereco);
+        return String.format("\nHospital: %d \t Nome: %s \t Endereço: %s", this.gethospitalId(), this.getNome(),
+                this.getEndereco());
     }
 
 }

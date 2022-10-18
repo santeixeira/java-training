@@ -27,7 +27,7 @@ public class MedicoService extends Medico {
             ResultSet rs = ps.getResultSet();
             while (rs.next()) {
                 Medico medico = new Medico(rs.getString(1),
-                        rs.getDouble(2),
+                        rs.getString(2),
                         rs.getString(3));
                 medicoList.add(medico);
             }
@@ -44,18 +44,18 @@ public class MedicoService extends Medico {
         System.out.println("Digite CRM: ");
         this.setCrm(sc.nextLine());
         System.out.println("Digite Salario: ");
-        this.setSalario(sc.nextDouble());
+        this.setSalario(Double.parseDouble(sc.nextLine()));
         System.out.println("Digite Especializacao: ");
         this.setEspecializacao(sc.nextLine());
 
-        Integer subquery = Integer.parseInt("SELECT P.PESSOA_ID FROM PESSOA P WHERE CPF = " + cpf);
-        String query = "INSERT INTO MEDICO (CRM, SALARIO, ESPECIALIZACAO, PESSOA_ID) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO MEDICO (CRM, SALARIO, ESPECIALIZACAO, PESSOA_ID) VALUES (?, ?, ?, (SELECT P.PESSOA_ID FROM PESSOA P WHERE CPF = '"
+                + cpf + "'))";
+        System.out.println(query);
         try (PreparedStatement ps = connection.prepareStatement(query,
                 Statement.RETURN_GENERATED_KEYS);) {
             ps.setString(1, this.getCrm());
             ps.setDouble(2, this.getSalario());
             ps.setString(3, this.getEspecializacao());
-            ps.setInt(4, subquery);
 
             ps.execute();
 
