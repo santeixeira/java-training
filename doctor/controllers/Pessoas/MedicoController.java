@@ -1,57 +1,45 @@
 package controllers.Pessoas;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import app.AppDoctor;
-import models.Pessoa;
-import services.PessoaService;
+import services.MedicoService;
+import utils.functionSQL;
 
 public class MedicoController {
-  PessoaService ps = new PessoaService();
+  MedicoService medico = new MedicoService();
   AppDoctor doc = new AppDoctor();
-  List<Pessoa> pessoas = new ArrayList<Pessoa>();
 
   public void gerenciarCadastro() throws InterruptedException, SQLException {
 
     Scanner sc = new Scanner(System.in);
+    functionSQL fSql = new functionSQL();
 
-    System.out.println("1 - Mostrar todos os usuarios.");
-    Thread.sleep(20);
-    System.out.println("2 - Mostrar usario por ID");
-    Thread.sleep(20);
-    System.out.println("3 - Adicionar um usuario");
-    Thread.sleep(20);
-    System.out.println("4 - Alterar um usuario");
-    Thread.sleep(20);
-    System.out.println("5 - Deletar um usuario");
-    Thread.sleep(20);
-    System.out.println("0 - Voltar para menu");
-    Thread.sleep(20);
+    fSql.crudTexts("medico");
 
     System.out.print("\nEscolha: ");
     byte choice = sc.nextByte();
 
     switch (choice) {
       case 1:
-        System.out.println("Mostrando e listando todos as pessoas do sistema, aguarde!");
-        pessoas = ps.getPessoa();
-        pessoas.stream().forEach(p -> System.out.println(p));
+        System.out.println("Mostrando e listando todos os medicos do sistema, aguarde!");
+        medico.getMedico();
         AppDoctor.backtrack();
         break;
       case 2:
-        System.out.println("\nDigite o CPF do usuario: ");
-        String cpf = sc.next();
-        System.out.print("Mostrando o usuario de CPF: " + cpf + ", aguarde!");
+        System.out.println("\nDigite o CRM do medico: ");
+        String crm = sc.next();
+        System.out.print("Mostrando o medico de CRM: " + crm + ", aguarde!");
         Thread.sleep(100);
-        ps.getPessoaByCpf(cpf);
+        medico.getMedicoByCrm(crm);
         AppDoctor.backtrack();
         break;
       case 3:
+        System.out.println("\nDigite o CPF do medico: ");
+        String cpf = sc.next();
         Thread.sleep(100);
-        ps.postPessoa();
+        medico.postMedico(cpf);
         AppDoctor.backtrack();
         break;
       case 4:

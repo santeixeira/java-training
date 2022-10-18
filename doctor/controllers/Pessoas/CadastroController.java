@@ -8,6 +8,7 @@ import java.util.Scanner;
 import app.AppDoctor;
 import models.Pessoa;
 import services.PessoaService;
+import utils.functionSQL;
 
 public class CadastroController {
   PessoaService ps = new PessoaService();
@@ -18,18 +19,9 @@ public class CadastroController {
 
     Scanner sc = new Scanner(System.in);
 
-    System.out.println("1 - Mostrar todos os usuarios.");
-    Thread.sleep(20);
-    System.out.println("2 - Mostrar usario por ID");
-    Thread.sleep(20);
-    System.out.println("3 - Adicionar um usuario");
-    Thread.sleep(20);
-    System.out.println("4 - Alterar um usuario");
-    Thread.sleep(20);
-    System.out.println("5 - Deletar um usuario");
-    Thread.sleep(20);
-    System.out.println("0 - Voltar para menu");
-    Thread.sleep(20);
+    functionSQL fSql = new functionSQL();
+
+    fSql.crudTexts("pessoa");
 
     System.out.print("\nEscolha: ");
     byte choice = sc.nextByte();
@@ -38,7 +30,6 @@ public class CadastroController {
       case 1:
         System.out.println("Mostrando e listando todos as pessoas do sistema, aguarde!");
         pessoas = ps.getPessoa();
-        pessoas.stream().forEach(p -> System.out.println(p));
         AppDoctor.backtrack();
         break;
       case 2:

@@ -36,6 +36,9 @@ public class HospitalService extends Hospital {
                 Hospital hospital = new Hospital(rst.getLong(1), rst.getString(2), rst.getString(3));
                 hospitais.add(hospital);
             }
+            for (Hospital h : hospitais) {
+                System.out.println(h);
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();

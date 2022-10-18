@@ -9,7 +9,7 @@ public class FormatDate {
     java.sql.Date sqlDate = new java.sql.Date(millis);
     java.util.Date utilDate = new java.util.Date(sqlDate.getTime());
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    final String stringDate = sdf.format(utilDate);
+    // final String stringDate = sdf.format(utilDate);
     return utilDate;
   }
 }

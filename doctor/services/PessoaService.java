@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,9 +44,10 @@ public class PessoaService extends Pessoa {
                 Pessoa pessoa = new Pessoa(rst.getLong(1), rst.getString(2), rst.getString(3), fd, rst.getString(5),
                         Sexo.FEMININO);
                 pessoas.add(pessoa);
-                for (Pessoa p : pessoas) {
-                    System.out.println(p);
-                }
+
+            }
+            for (Pessoa p : pessoas) {
+                System.out.println(p);
             }
         } catch (SQLException e) {
             e.printStackTrace();
