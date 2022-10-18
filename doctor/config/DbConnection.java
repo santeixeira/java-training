@@ -6,11 +6,13 @@ import javax.sql.DataSource;
 
 public class DbConnection {
 
-  // jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_89732026fc9d848?serverTimezone=UTC
+  private String url = "jdbc:mysql://us-cdbr-east-06.cleardb.net:3306/heroku_89732026fc9d848?serverTimezone=UTC";
+  private String user = "b71e955e833746"; 
+  private String password = "999cf753";
   
-  private String url = "jdbc:mysql://localhost:3306/API_HOSPITAL?serverTimezone=UTC";
-  private String user = "root"; //b71e955e833746
-  private String password = "16345578tT@"; //999cf753
+  // private String url = "jdbc:mysql://localhost:3306/API_HOSPITAL?serverTimezone=UTC";
+  // private String user = "root";
+  // private String password = "16345578tT@"; 
   public DataSource dataSource;
 
   public Connection Connect() {
